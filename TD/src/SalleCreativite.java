@@ -4,7 +4,7 @@ public class SalleCreativite {
 	private boolean babyfoot,machineCafe;
 	private int nbLit;
 	
-	public SalleCreativite()
+	public SalleCreativite(String nom)
 	{
 		
 	}
