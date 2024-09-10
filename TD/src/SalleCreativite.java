@@ -1,5 +1,5 @@
 
-public class SalleCreativite {
+public class SalleCreativite extends Salle {
 
 	private boolean babyfoot,machineCafe;
 	private int nbLit;
@@ -18,5 +18,35 @@ public class SalleCreativite {
 	{
 		super(nom,t1p,t2p,c);
 		this.nbLit=lit;
+		this.babyfoot=DEFAULT_BOOL;
+		this.machineCafe=DEFAULT_BOOL;
+	}
+	
+	public void setNbLit(int lit) {
+		this.nbLit = lit;
+	}
+	
+	public int getNbLit() {
+		return this.nbLit;
+	}
+	
+	public void setMachineCafe(boolean machine) {
+		this.machineCafe = machine;
+	}
+	
+	public boolean getMachineCafe() {
+		return this.machineCafe;
+	}
+	
+	public void setBabyfoot(boolean baby) {
+		this.babyfoot = baby;
+	}
+	
+	public boolean getBabyfoot() {
+		return this.babyfoot;
+	}
+	
+	public String toString() {
+		return "Salle de créativité "+super.toString()+", "+this.nbLit+" lit(s), "+(this.machineCafe ? "une machine à café" : "pas de machine à café");
 	}
 }

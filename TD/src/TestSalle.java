@@ -12,6 +12,9 @@ public class TestSalle {
         SalleTP s5 = new SalleTP("C113-A",16,0,8,16);
         SalleTP s6 = new SalleTP("C113-B",16,0,8,14);
         
+        SalleCreativite s7 = new SalleCreativite("A105");
+        SalleCreativite s8 = new SalleCreativite("A111",10,10,28,5);
+        /*
         System.out.println("S1 : "+s1.toString());
         System.out.println("capacité de S1 : "+s1.capacite());
         
@@ -23,8 +26,12 @@ public class TestSalle {
         
         System.out.println("\nS4 : "+s4.toString());
         System.out.println("capacité de S4 : "+s4.capacite());
-        
+        */
         System.out.println("\nS5 : "+s5.toString());
         System.out.println("S6 : "+s6.toString());
+        
+        System.out.println("S7 : "+s7.toString());
+        s8.setMachineCafe(true);
+        System.out.println("S8 : "+s8.toString());
     }
 }
