@@ -9,7 +9,6 @@ public class Salle {
         this.nbTable1p = nbTable1p;
         this.nbTable2p = nbTable2p;
         this.nbChaise = nbChaise;
-
     }
 
     public Salle(String nom) 
@@ -18,7 +17,6 @@ public class Salle {
         this.nbTable1p = 0;
         this.nbTable2p = 0;
         this.nbChaise = 0;
-
     }
     public Salle(String nom, int nbChaise) {
         this.nom = nom;
