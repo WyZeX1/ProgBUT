@@ -4,6 +4,7 @@ public class Document {
 	private int anneeEdition;
 	private int numInventaire;
 	private String titre,editeur;
+	private boolean emprunte;
 	
 	public Document(int numInv, String titre, String editeur, int annee) {
 		this.numInventaire=numInv;
@@ -30,5 +31,13 @@ public class Document {
 	
 	public int getAnneeEdition() {
 		return this.anneeEdition;
+	}
+	
+	public void emprunte(boolean e) {
+		this.emprunte=e;
+	}
+	
+	public boolean estEmprunte() {
+		return this.emprunte;
 	}
 }

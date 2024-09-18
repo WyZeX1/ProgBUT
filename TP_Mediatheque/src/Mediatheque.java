@@ -1,12 +1,14 @@
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+
+import javax.swing.text.Document;
 
 public class Mediatheque {
 
-	private LinkedList<Document> inventaire;
+	private ArrayList<Document> inventaire;
 	
 	public Mediatheque() {
-		this.inventaire = new LinkedList<Document>();
+		this.inventaire = new ArrayList<Document>();
 	}
 	
 	public void ajouteDocument(Document d) {
@@ -47,6 +49,18 @@ public class Mediatheque {
 	}
 	
 	public void emprunte(int numInventaire) {
+		for (int i=0 ; i < inventaire.size();i++) {
+			if (inventaire.get(i).getNumInventaire() == numInventaire) {
+				return inventaire.get(i).estEmprunte();
+			}
+		}
+	}
+	
+	public void retourne(int numInventaire) {
+		
+	}
+	
+	public ArrayList<Document> listeDocumentEprunte() {
 		
 	}
 }
