@@ -1,8 +1,6 @@
 
 import java.util.ArrayList;
 
-import javax.swing.text.Document;
-
 public class Mediatheque {
 
 	private ArrayList<Document> inventaire;
@@ -12,55 +10,56 @@ public class Mediatheque {
 	}
 	
 	public void ajouteDocument(Document d) {
-		inventaire.add(d);
+		this.inventaire.add(d);
+	}
+	
+	public String toString() {
+		String resultat = "La médiathèque possède "+this.inventaire.size()+" documents.\n";
+		for (int i=0 ; i < this.inventaire.size();i++) {
+			resultat += this.inventaire.get(i).toString()+"\n";
+		}
+		return resultat;
 	}
 	
 	public void afficheCatalogue() {
-		System.out.println("La médiathèque possède "+inventaire.size()+" documents.");
-		for (int i=0 ; i < inventaire.size();i++) {
-			System.out.println(inventaire.get(i));
-		}
+		System.out.println(this.toString());
 	}
 
-	public Document get(int numInventaire) {
-		/*
-		for (int i=0 ; i < inventaire.size();i++) {
-			if (inventaire.get(i).getNumInventaire() == numInventaire) {
-				return inventaire.get(i);
-			}
-		}
-		return null;*/
-		for (Document d : inventaire) {
+	public Document get(int numInventaire) throws DocumentInexistantException {
+		for (Document d : this.inventaire) {
 			if (d.getNumInventaire() == numInventaire) {
 				return d;
 			}
 		}
-		return null;
+		throw new DocumentInexistantException(numInventaire);
 	}
 
-	public boolean supprimeDocument(int numInventaire) {
-		for (int i=0 ; i < inventaire.size();i++) {
-			if (inventaire.get(i).getNumInventaire() == numInventaire) {
-				inventaire.remove(i);
-				return true;
-			}
-		}
-		return false;
+	public boolean supprimeDocument(int numInventaire) throws DocumentInexistantException {
+		return this.inventaire.remove(this.get(numInventaire));
 	}
 	
-	public void emprunte(int numInventaire) {
-		for (int i=0 ; i < inventaire.size();i++) {
-			if (inventaire.get(i).getNumInventaire() == numInventaire) {
-				return inventaire.get(i).estEmprunte();
-			}
-		}
+	public void emprunte(int numInventaire) throws DocumentInexistantException, DocumentDejaEmprunteException {
+		this.get(numInventaire).emprunte(true); throw new DocumentDejaEmprunteException(numInventaire);
 	}
 	
-	public void retourne(int numInventaire) {
-		
+	public void retourne(int numInventaire) throws DocumentInexistantException, DocumentDejaRenduException {
+		this.get(numInventaire).emprunte(false);
 	}
 	
-	public ArrayList<Document> listeDocumentEprunte() {
-		
+	public ArrayList<Document> listeDocumentEmprunte() {
+		ArrayList<Document> docEmprunte = new ArrayList<Document>();
+		for (Document d : this.inventaire) if (d.estEmprunte()) docEmprunte.add(d);
+		return docEmprunte;
+	}
+	
+	public ArrayList<Document> recherche(String rec) {
+		ArrayList<Document> recherche = new ArrayList<Document>();
+	    String[] mots_rec = rec.split(":");
+	    for (Document d: this.inventaire) {
+	    	if (mots_rec == d.getTitre().split(" ")) {
+	    		recherche.add(d);
+	    	}
+	    }
+		return recherche;
 	}
 }

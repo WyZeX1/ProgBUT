@@ -54,12 +54,12 @@ public class TestMediatheque
 		
 		
 		// teste la gestion des emprunts
-		m.emprunteDocument(1001);
-		m.emprunteDocument(1002);
-		System.out.println("Documents emprunt�s :\n"+m.listeDocumentEmprunte());
+		m.emprunte(1001);
+		m.emprunte(1002);
+		System.out.println("Documents empruntés :\n"+m.listeDocumentEmprunte());
 		
-		//System.out.println("R�sultat recherche (chev) :\n"+m.recherche("chev"));
-		//System.out.println("R�sultat recherche (livre:chev) :\n"+m.recherche("livre:chev"));
+		System.out.println("Résultat recherche (chev) :\n"+m.recherche("chev"));
+		System.out.println("Résultat recherche (livre:chev) :\n"+m.recherche("livre:chev"));
 		
 	}
 
