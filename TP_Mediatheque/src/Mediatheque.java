@@ -23,9 +23,16 @@ public class Mediatheque {
 	}
 
 	public Document get(int numInventaire) {
+		/*
 		for (int i=0 ; i < inventaire.size();i++) {
 			if (inventaire.get(i).getNumInventaire() == numInventaire) {
 				return inventaire.get(i);
+			}
+		}
+		return null;*/
+		for (Document d : inventaire) {
+			if (d.getNumInventaire() == numInventaire) {
+				return d;
 			}
 		}
 		return null;
