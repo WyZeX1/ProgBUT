@@ -39,7 +39,9 @@ public class Mediatheque {
 	}
 	
 	public void emprunte(int numInventaire) throws DocumentInexistantException, DocumentDejaEmprunteException {
-		this.get(numInventaire).emprunte(true); throw new DocumentDejaEmprunteException(numInventaire);
+		Document d = this.get(numInventaire);
+		d.emprunte(true);
+		throw new DocumentDejaEmprunteException(numInventaire);
 	}
 	
 	public void retourne(int numInventaire) throws DocumentInexistantException, DocumentDejaRenduException {
@@ -56,8 +58,11 @@ public class Mediatheque {
 		ArrayList<Document> recherche = new ArrayList<Document>();
 	    String[] mots_rec = rec.split(":");
 	    for (Document d: this.inventaire) {
-	    	if (mots_rec == d.getTitre().split(" ")) {
-	    		recherche.add(d);
+	    	for (String mot : mots_rec) {
+	    		if (mot == d.getTitre().split(" ")[0]) {
+		    		recherche.add(d);
+		    	}
+	    	
 	    	}
 	    }
 		return recherche;

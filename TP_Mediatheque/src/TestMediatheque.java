@@ -1,6 +1,6 @@
 public class TestMediatheque
 {
-	public static void main(String[] args)
+	public static void main(String[] args) throws DocumentInexistantException, DocumentDejaEmprunteException
 	{
 		Document doc1 = new Document(12345,"letitre","lediteur",2020);
 		System.out.println(doc1);
