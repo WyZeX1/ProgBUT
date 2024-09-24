@@ -3,13 +3,17 @@ public class Personnage {
 
 	private String nom;
 	private int force,endurance,intelligence;
-	private int DEFAULT_ATTRIBUTE_VALUE = 8;
+	final static public int DEFAULT_ATTRIBUTE_VALUE = 8;
+	final static public int DEFAULT_ATTRIBUTE_MAX_VALUE = 20;
 	
 	public Personnage(String nom) {
+		/*
 		this.nom=nom;
-		this.force=DEFAULT_ATTRIBUTE_VALUE;
-		this.endurance=DEFAULT_ATTRIBUTE_VALUE;
-		this.intelligence=DEFAULT_ATTRIBUTE_VALUE;
+		this.force=Personnage.DEFAULT_ATTRIBUTE_VALUE;
+		this.endurance=Personnage.DEFAULT_ATTRIBUTE_VALUE;
+		this.intelligence=Personnage.DEFAULT_ATTRIBUTE_VALUE;
+		*/
+		this(nom,Personnage.DEFAULT_ATTRIBUTE_VALUE,Personnage.DEFAULT_ATTRIBUTE_VALUE,Personnage.DEFAULT_ATTRIBUTE_VALUE);
 	}
 	
 	public Personnage(String nom, int force, int endurance, int intelligence) {
@@ -20,29 +24,42 @@ public class Personnage {
 	}
 	
 	public String toString() {
-		return "NOM="+this.nom+" FOR="+this.force+" END="+this.endurance+" INT="+this.intelligence;
+		return "NOM="+this.nom+(this.isChampion() ? "*" : "")+" FOR="+this.force+" END="+this.endurance+" INT="+this.intelligence;
 	}
 	
 	public String getNom() {
 		return this.nom;
 	}
 	
+	public void setNom(String nom) {
+		this.nom=nom;
+	}
+	
 	public int getForce() {
 		return this.force;
+	}
+	
+	public void setForce(int frc) {
+		this.force=frc;
 	}
 	
 	public int getEndurance() {
 		return this.endurance;
 	}
 	
+	public void setEndurance(int endurance) {
+		this.endurance=endurance;
+	}
+	
 	public int getIntelligence() {
 		return this.intelligence;
 	}
 	
+	public void setIntelligence(int intelligence) {
+		this.intelligence=intelligence;
+	}
+	
 	public boolean isChampion() {
-		if (this.force == 20 || this.endurance == 20 || this.intelligence == 20) {
-			return true;
-		}
-		return false;
+		return this.force == Personnage.DEFAULT_ATTRIBUTE_MAX_VALUE || this.endurance == Personnage.DEFAULT_ATTRIBUTE_MAX_VALUE || this.intelligence == Personnage.DEFAULT_ATTRIBUTE_MAX_VALUE;
 	}
 }

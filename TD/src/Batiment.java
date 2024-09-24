@@ -6,25 +6,25 @@ public class Batiment {
 	public Batiment(String nom) {
 		this.nom=nom;
 	}
-	
+	/*
 	public Object ajoute(Object salle) {
 		
 	}
 	
 	public boolean get(String nom) {
 		
-	//}
+	}
 	
-	//public int capacite() {
+	public int capacite() {
 		
-	//}
+	}
 	
-	//public boolean estBienConfiguree() {
+	public boolean estBienConfiguree() {
 		
-	//}
+	}
 	
-	//public String toString() {
+	public String toString() {
 		
-	//}
+	}
+	*/
 }
-x

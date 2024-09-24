@@ -14,7 +14,7 @@ public class TestSalle {
         
         SalleCreativite s7 = new SalleCreativite("A105");
         SalleCreativite s8 = new SalleCreativite("A111",10,10,28,5);
-        /*
+        
         System.out.println("S1 : "+s1.toString());
         System.out.println("capacité de S1 : "+s1.capacite());
         
@@ -26,7 +26,7 @@ public class TestSalle {
         
         System.out.println("\nS4 : "+s4.toString());
         System.out.println("capacité de S4 : "+s4.capacite());
-        */
+        
         System.out.println("\nS5 : "+s5.toString());
         System.out.println("S6 : "+s6.toString());
         
