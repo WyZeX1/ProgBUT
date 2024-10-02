@@ -2,9 +2,11 @@ import java.util.ArrayList;
 
 public class Course {
 
+	private Classement classement;
 	private ArrayList<Coureur> course;
 	
 	public Course() {
+		this.classement = new Classement();
 		this.course = new ArrayList<Coureur>();
 	}
 	
@@ -29,4 +31,14 @@ public class Course {
 		Course.position++;
 	}
 	*/
+	
+	public void arrive(Coureur c)
+	{
+		this.classement.arrive(c);
+	}
+	
+	public Classement getClassement()
+	{
+		return this.classement;
+	}
 }
