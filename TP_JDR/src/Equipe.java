@@ -53,7 +53,6 @@ public class Equipe {
 				else 
 					str_perso +=":"+((Elfe) perso).getCharisme();
 				res+=str_perso+"\n";
-				
 			}
 			p.println(res);	//écriture avec retour-chariot
 			fos.close();

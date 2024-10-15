@@ -1,4 +1,4 @@
-
+	
 public class Dvd extends Document {
 
 	private String nomReal;
@@ -15,5 +15,4 @@ public class Dvd extends Document {
 	public String toString() {
 		return "Doc n°"+super.getNumInventaire()+" DVD \""+this.getTitre()+"\" réalisé par "+this.nomReal+" édité par "+this.getEditeur()+" en "+this.getAnneeEdition();
 	}
-	
 }
