@@ -1,7 +1,7 @@
 
 public interface MSNRTMessageDispatcher {
 	/**
-	 * délivre à  tous  les  utilisateurs  connect�s  le  message msg envoyé  par l'utilisateur pseudo
+	 * délivre à  tous  les  utilisateurs  connectés  le  message msg envoyé  par l'utilisateur pseudo
 	 * @param sender_pseudo pseudonyme de l'utilisateur qui envoie le message
 	 * @param msg message a délivrer
 	 */

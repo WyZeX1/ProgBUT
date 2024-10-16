@@ -15,12 +15,16 @@ public class MSNRTServerThread extends Thread
 	/** le tuyau de communication avec le client */
 	private Socket service;
 
+	private MSNRTClientManager authentifier;
+	private MSNRTMessageDispatcher dispatcher;
 	/**
 	 * Initialisation du serveur MSNRT
 	 */
-	public MSNRTServerThread(Socket service)
+	public MSNRTServerThread(Socket socket, MSNRTClientManager authentifier, MSNRTMessageDispatcher dispatcher)
 	{
-		this.service=service;
+		this.service=socket;
+		this.authentifier=authentifier;
+		this.dispatcher=dispatcher;
 	}
 
 	/** 
@@ -48,6 +52,22 @@ public class MSNRTServerThread extends Thread
 					{
 						fini=true;
 					}
+					// commande open
+					else if (arrayRequete[0].equals("open"))
+					{
+						if (arrayRequete.length>2) {
+							System.out.println(this.open(arrayRequete[1], arrayRequete[2]));
+						} else {
+							System.out.println("Vous devez préciser le login ET le mdp");
+						}
+						sw.flush();
+					}
+					// commande close
+					else if (arrayRequete[0].equals("close"))
+					{
+					
+						sw.flush();
+					}
 					else
 					{
 						System.out.println("Commande non comprise <<"+requete+" "+">>");
@@ -56,10 +76,17 @@ public class MSNRTServerThread extends Thread
 			}
 			sr.close();
 			sw.close();
-		} 
-		catch (IOException e) {
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public String open(String login, String passwd) {
+		String res = "";
+		if (this.authentifier.register(login,passwd)) {
+			res += "AUTHORIZED";
+		}
+		return null;
 	}
 }

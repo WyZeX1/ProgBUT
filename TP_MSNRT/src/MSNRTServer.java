@@ -2,7 +2,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class MSNRTServer 
+public class MSNRTServer implements MSNRTMessageDispatcher,MSNRTClientManager
 {
 	/** port par défaut s'il n'est pas précisé */
 	public static int DEFAULT_WORKING_PORT = 10000;
@@ -39,16 +39,47 @@ public class MSNRTServer
 
 			while(true)
 			{
-				if (DEBUG) System.out.println("Attente de connexion...");
+				DEBUG("Attente de connexion...");
 				Socket service  = srvSocket.accept() ;
-				if (DEBUG) System.out.println("Serveur connect� avec "+service.getInetAddress().getHostAddress()+":"+service.getPort());
+				DEBUG("Serveur connect� avec "+service.getInetAddress().getHostAddress()+":"+service.getPort());
 
-				(new MSNRTServerThread(service)).start();
+				(new MSNRTServerThread(service,this,this)).start();
 			}
 		} 
 		catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public String register(String login, String passwd) throws UnauthorizedUserException {
+		if (login.isEmpty())
+			throw new UnauthorizedUserException(login);
+		return login;
+	}
+
+	@Override
+	public void unregister(String login) {
+		DEBUG("Client "+login+" à quitté le chat");
+	}
+
+	@Override
+	public String[] getPseudos() {
+		return null;
+	}
+
+	@Override
+	public void broadcastMessage(String sender_pseudo, String msg) {
+		DEBUG("["+sender_pseudo+" → all] "+msg);
+	}
+
+	@Override
+	public void dispatchPrivateMessage(String sender_pseudo, String receiver_pseudo, String msg) {
+		DEBUG("["+sender_pseudo+" → "+sender_pseudo+"] "+msg);
+	}
+	
+	public static void DEBUG(String string) {
+		if (DEBUG) System.out.println(string);		
 	}
 }
