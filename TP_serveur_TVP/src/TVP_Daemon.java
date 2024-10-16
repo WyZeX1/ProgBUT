@@ -13,6 +13,7 @@ public class TVP_Daemon {
 	public static String RC;
 	public static int DEFAULT_WORKING_PORT = 10000;
 	private String repCourant;
+	public static boolean DEBUG = true;
 	private final static String directory = "C:\\Users\\Aurélien\\OneDrive\\Documents\\Bureau\\Serv_TVP";
 	
 	public TVP_Daemon() {
