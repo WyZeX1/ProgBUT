@@ -20,7 +20,6 @@ public class JDBC {
 			e.printStackTrace();
 		}
 		
-		
 		// Préparer connexion au serveur SGBD
 		Connection connection = null;
 		try {
