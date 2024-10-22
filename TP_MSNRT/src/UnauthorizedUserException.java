@@ -8,6 +8,7 @@ public class UnauthorizedUserException extends Exception{
 	{
 		this.login=login;
 	}
+	
 	public String toString()
 	{
 		return "L'utilisateur "+this.login+" n'a pas �t� autoris� � se connecter (mdp erron�, non enregistr�...)";

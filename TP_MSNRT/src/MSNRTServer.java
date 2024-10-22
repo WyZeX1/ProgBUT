@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.LinkedList;
 
 public class MSNRTServer implements MSNRTMessageDispatcher,MSNRTClientManager
 {
@@ -10,11 +11,13 @@ public class MSNRTServer implements MSNRTMessageDispatcher,MSNRTClientManager
 	/** Pour afficher des traces de debuggage */
 	public static boolean DEBUG = true;
 
+	public LinkedList<String> registeredUsers;
 	/**
 	 * Initialisation du serveur TVP
 	 */
 	public MSNRTServer()
 	{
+		this.registeredUsers = new LinkedList<String>();
 	}
 
 	/** 
@@ -41,7 +44,7 @@ public class MSNRTServer implements MSNRTMessageDispatcher,MSNRTClientManager
 			{
 				DEBUG("Attente de connexion...");
 				Socket service  = srvSocket.accept() ;
-				DEBUG("Serveur connect� avec "+service.getInetAddress().getHostAddress()+":"+service.getPort());
+				DEBUG("Serveur connecté avec "+service.getInetAddress().getHostAddress()+":"+service.getPort());
 
 				(new MSNRTServerThread(service,this,this)).start();
 			}
@@ -56,6 +59,11 @@ public class MSNRTServer implements MSNRTMessageDispatcher,MSNRTClientManager
 	public String register(String login, String passwd) throws UnauthorizedUserException {
 		if (login.isEmpty())
 			throw new UnauthorizedUserException(login);
+		
+		for (String l : this.registeredUsers)
+			if (l.equals(login)) throw new UnauthorizedUserException(login);
+		
+		this.registeredUsers.add(login);
 		return login;
 	}
 
@@ -65,8 +73,11 @@ public class MSNRTServer implements MSNRTMessageDispatcher,MSNRTClientManager
 	}
 
 	@Override
-	public String[] getPseudos() {
-		return null;
+	public String[] registeredUsers() {
+		String[] res = new String[this.registeredUsers.size()];
+		for(int i=0;i<this.registeredUsers.size();i++)
+				res[i]=this.registeredUsers.get(i);
+		return res;
 	}
 
 	@Override
@@ -78,7 +89,7 @@ public class MSNRTServer implements MSNRTMessageDispatcher,MSNRTClientManager
 	public void dispatchPrivateMessage(String sender_pseudo, String receiver_pseudo, String msg) {
 		DEBUG("["+sender_pseudo+" → "+sender_pseudo+"] "+msg);
 	}
-	
+
 	public static void DEBUG(String string) {
 		if (DEBUG) System.out.println(string);		
 	}

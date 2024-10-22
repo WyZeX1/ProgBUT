@@ -17,8 +17,8 @@ public interface MSNRTClientManager {
 	public void unregister(String login);
 	
 	/**
-	 * renvoie la liste des pseudonymes des utilisateurs connectés
-	 * @return les pseudonymes des utilisateurs connectés
+	 * Renvoie les pseudonymes des utilisateurs connectés
+	 * @param login login de l'utilisateur voulant quitter la messagerie MSNRT
 	 */
-	public  String[] getPseudos();
+	public String[] registeredUsers();
 }
